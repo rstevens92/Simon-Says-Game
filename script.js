@@ -2,43 +2,77 @@ const redButton = document.getElementById("red-button");
 const blueButton = document.getElementById("blue-button");
 const yellowButton = document.getElementById("yellow-button");
 const greenButton = document.getElementById("green-button");
+const actionButton = document.getElementById("center-button");
 
-redButton.addEventListener("click", () => {
-    console.log("clicked")
-    redButton.style.backgroundColor = "darkred";
-    const colourTimeout = setTimeout(resetColour, 50);
+let flashNumber = 0;
+
+function redButtonFlash() {
+    redButton.style.backgroundColor = "maroon";
+    const colourTimeout = setTimeout(resetColour, 100);
     function resetColour() {
         redButton.style.backgroundColor = "red";
-        console.log("changed colour");
     }
+}
+
+function blueButtonFlash() {
+    blueButton.style.backgroundColor = "#000066";
+    const colourTimeout = setTimeout(resetColour, 100);
+    function resetColour() {
+        blueButton.style.backgroundColor = "blue";
+    }
+}
+
+function yellowButtonFlash() {
+    yellowButton.style.backgroundColor = "darkgoldenrod";
+    const colourTimeout = setTimeout(resetColour, 100);
+    function resetColour() {
+        yellowButton.style.backgroundColor = "yellow";
+    }
+}
+
+function greenButtonFlash() {
+    greenButton.style.backgroundColor = "#003300";
+    const colourTimeout = setTimeout(resetColour, 100);
+    function resetColour() {
+        greenButton.style.backgroundColor = "green";
+    }
+}
+
+
+redButton.addEventListener("click", () => {
+        redButtonFlash();
 });
 
 blueButton.addEventListener("click", () => {
-    console.log("clicked")
-    blueButton.style.backgroundColor = "darkblue";
-    const colourTimeout = setTimeout(resetColour, 50);
-    function resetColour() {
-        blueButton.style.backgroundColor = "blue";
-        console.log("changed colour");
-    }
+        blueButtonFlash();
 });
 
 yellowButton.addEventListener("click", () => {
-    console.log("clicked")
-    yellowButton.style.backgroundColor = "darkgoldenrod";
-    const colourTimeout = setTimeout(resetColour, 50);
-    function resetColour() {
-        yellowButton.style.backgroundColor = "yellow";
-        console.log("changed colour");
-    }
+        yellowButtonFlash();
 });
 
 greenButton.addEventListener("click", () => {
-    console.log("clicked")
-    greenButton.style.backgroundColor = "darkgreen";
-    const colourTimeout = setTimeout(resetColour, 50);
-    function resetColour() {
-        greenButton.style.backgroundColor = "green";
-        console.log("changed colour");
+        greenButtonFlash();
+});
+
+function buttonFlashing() {
+    flashNumber = Math.floor(Math.random()*4);
+    console.log(flashNumber);
+    if(flashNumber === 0){
+        redButtonFlash();
+    } else if (flashNumber === 1) {
+        blueButtonFlash();
+    } else if (flashNumber === 2) {
+        yellowButtonFlash();
+    } else {
+        greenButtonFlash();
+    }; 
+}
+
+actionButton.addEventListener("click", () => {
+    actionButton.innerHTML = "Try Again";
+    for (let i = 0; i < 3 ; i++){
+        setInterval(buttonFlashing, 2000);
     }
 });
+
