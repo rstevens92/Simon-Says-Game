@@ -5,6 +5,9 @@ const greenButton = document.getElementById("green-button");
 const actionButton = document.getElementById("center-button");
 
 let flashNumber = 0;
+let flashNumberArr = [];
+let pressedNumber = 0;
+let pressedNumberArr = [];
 
 function redButtonFlash() {
     redButton.style.backgroundColor = "maroon";
@@ -41,18 +44,30 @@ function greenButtonFlash() {
 
 redButton.addEventListener("click", () => {
         redButtonFlash();
+        pressedNumber = 0;
+        pressedNumberArr.push(pressedNumber);
+        console.log(pressedNumber);
 });
 
 blueButton.addEventListener("click", () => {
         blueButtonFlash();
+        pressedNumber = 1;
+        pressedNumberArr.push(pressedNumber);
+        console.log(pressedNumber);
 });
 
 yellowButton.addEventListener("click", () => {
         yellowButtonFlash();
+        pressedNumber = 2;
+        pressedNumberArr.push(pressedNumber);
+        console.log(pressedNumber);
 });
 
 greenButton.addEventListener("click", () => {
         greenButtonFlash();
+        pressedNumber = 3;
+        pressedNumberArr.push(pressedNumber);
+        console.log(pressedNumber);
 });
 
 function buttonFlashing() {
@@ -60,19 +75,25 @@ function buttonFlashing() {
     console.log(flashNumber);
     if(flashNumber === 0){
         redButtonFlash();
+        flashNumberArr.push(flashNumber);
     } else if (flashNumber === 1) {
         blueButtonFlash();
+        flashNumberArr.push(flashNumber);
     } else if (flashNumber === 2) {
         yellowButtonFlash();
+        flashNumberArr.push(flashNumber);
     } else {
         greenButtonFlash();
+        flashNumberArr.push(flashNumber);
     }; 
 }
 
 actionButton.addEventListener("click", () => {
     actionButton.innerHTML = "Try Again";
-    for (let i = 0; i < 3 ; i++){
-        setInterval(buttonFlashing, 2000);
-    }
+    pressedNumberArr = [];
+    // buttonFlashing();
+     for (; flashNumberArr.length > 4; flashNumberArr++){
+         setInterval(buttonFlashing, 1000);
+     }
 });
 
