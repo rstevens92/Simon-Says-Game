@@ -3,11 +3,14 @@ const blueButton = document.getElementById("blue-button");
 const yellowButton = document.getElementById("yellow-button");
 const greenButton = document.getElementById("green-button");
 const actionButton = document.getElementById("center-button");
+const enterButton = document.getElementById("enter-button");
+const resetButton = document.getElementById("reset-button");
 
 let flashNumber = 0;
 let flashNumberArr = [];
 let pressedNumber = 0;
 let pressedNumberArr = [];
+let winCounter = 0;
 
 function redButtonFlash() {
     redButton.style.backgroundColor = "maroon";
@@ -63,7 +66,7 @@ yellowButton.addEventListener("click", () => {
         console.log(pressedNumber);
 });
 
-greenButton.addEventListener("click", () => {
+greenButton.addEventListener("click", (id) => {
         greenButtonFlash();
         pressedNumber = 3;
         pressedNumberArr.push(pressedNumber);
@@ -87,13 +90,48 @@ function buttonFlashing() {
         flashNumberArr.push(flashNumber);
     }; 
 }
-
-actionButton.addEventListener("click", () => {
-    actionButton.innerHTML = "Try Again";
-    pressedNumberArr = [];
-    // buttonFlashing();
-     for (; flashNumberArr.length > 4; flashNumberArr++){
-         setInterval(buttonFlashing, 1000);
-     }
+    actionButton.addEventListener("click", () => {
+        actionButton.innerText = "Start";
+        pressedNumberArr = [];
+        flashNumberArr = [];
+      if (winCounter === 0){
+        for (let i = 1; i < 4; i++){
+       setTimeout( buttonFlashing, 1000*i);
+       i+1;
+    }}
+    if (winCounter === 1){
+        for (let i = 1; i < 5; i++){
+       setTimeout( buttonFlashing, 1000*i);
+       i+1;
+    }}
+    if (winCounter === 2){
+        for (let i = 1; i < 6; i++){
+       setTimeout( buttonFlashing, 1000*i);
+       i+1;
+    }}
+    if (winCounter === 3){
+        for (let i = 1; i < 7; i++){
+       setTimeout( buttonFlashing, 1000*i);
+       i+1;
+    }}
+    if (winCounter === 4){
+        location.reload();
+    }
 });
 
+    enterButton.addEventListener("click", () => {
+        let playerAnswer = pressedNumberArr.join();
+        let gameAnswer = flashNumberArr.join();
+        if (playerAnswer == gameAnswer){
+            actionButton.innerText = "Next Level";
+            console.log("winner!");
+            winCounter += 1;
+        } else {
+            actionButton.innerText = "Try Again";
+            console.log("Try again!");
+        }
+    });
+
+    resetButton.addEventListener("click", () =>{
+        location.reload();
+    })

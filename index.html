@@ -6,16 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon Says</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <!-- <script defer src="script.js"></script> -->
+    <script defer src="script2.js"></script>
 </head>
 <body>
     <h1>Simon Says</h1>
     <section>
-        <div id="center-button">Start</div>
-        <div id="red-button"></div>
-        <div id="blue-button"></div>
-        <div id="yellow-button"></div>
-        <div id="green-button"></div>
-    </section>
+        <div class="game__buttons" id="button_container">
+            <div id="center-button">Start</div>
+            <div id="red-button" data-flash-colour="maroon"></div>
+            <div id="blue-button" data-flash-colour="#000066"></div>        
+            <div id="yellow-button" data-flash-colour="darkgoldenrod"></div>
+            <div id="green-button" data-flash-colour="#003300"></div>
+        </section>
+        </div>
+            <div class="action__buttons">
+            <div id="enter-button">Enter</div>
+            <div id="reset-button">Reset</div>
+        </div>
 </body>
 </html>
